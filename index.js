@@ -79,12 +79,7 @@ console.log(chalk.bgHex('#90EE90').hex('#333').bold(' Load Complete! ✓ '));
 console.log(chalk.bgHex('#90EE90').hex('#333').bold(` Total Routes Loaded: ${totalRoutes} `));
 
 // Default home page
-app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index2.html'));
-});
-
-// Testing Home Page V2
- app.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 

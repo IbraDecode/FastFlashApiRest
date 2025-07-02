@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast Flash API - Dokumentasi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary-color: #8b5cf6;
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+      --dark-bg: #0f172a;
+      --dark-surface: #1e293b;
+      --dark-surface-2: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --border-color: #334155;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --border-radius: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #1a202c 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+      overflow-x: auto;
+    }
+
+    .nav-tab {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      white-space: nowrap;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .nav-tab.active {
+      color: var(--primary-color);
+    }
+
+    .nav-tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary-color);
+    }
+
+    .nav-tab:hover:not(.active) {
+      color: var(--text-primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .section {
+      background: var(--dark-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section h3 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin: 1.5rem 0 1rem 0;
+    }
+
+    .section p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .code-block {
+      background: var(--dark-surface-2);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      color: var(--text-primary);
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--primary-color);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: var(--transition);
+    }
+
+    .copy-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .parameter-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: var(--dark-surface-2);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .parameter-table th,
+    .parameter-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .parameter-table th {
+      background: var(--dark-surface);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .parameter-table td {
+      color: var(--text-secondary);
+    }
+
+    .parameter-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .status-active {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success-color);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .status-beta {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--warning-color);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .status-maintenance {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger-color);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .example-response {
+      background: var(--dark-surface-2);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      margin: 1rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+
+    .api-card {
+      background: var(--dark-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .api-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
+    }
+
+    .api-card h4 {
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .api-card p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .endpoint-url {
+      background: var(--dark-surface-2);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 0.75rem 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: var(--primary-color);
+      margin: 0.5rem 0;
+      word-break: break-all;
+    }
+
+    .back-to-home {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      background: var(--primary-color);
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-to-home:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .back-to-home {
+        position: static;
+        margin-bottom: 2rem;
+        width: fit-content;
+      }
+      
+      .nav-tabs {
+        flex-wrap: wrap;
+      }
+      
+      .parameter-table {
+        font-size: 0.8rem;
+      }
+      
+      .parameter-table th,
+      .parameter-table td {
+        padding: 0.75rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="back-to-home">
+    <i class="fas fa-arrow-left"></i>
+    Kembali ke Dashboard
+  </a>
+
+  <div class="container">
+    <div class="header">
+      <h1><i class="fas fa-bolt"></i> Fast Flash API</h1>
+      <p>Dokumentasi lengkap untuk menggunakan Fast Flash API - REST API yang powerful dan mudah digunakan</p>
+    </div>
+
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="getting-started">
+        <i class="fas fa-rocket"></i> Getting Started
+      </button>
+      <button class="nav-tab" data-tab="authentication">
+        <i class="fas fa-key"></i> Authentication
+      </button>
+      <button class="nav-tab" data-tab="endpoints">
+        <i class="fas fa-code"></i> Endpoints
+      </button>
+      <button class="nav-tab" data-tab="examples">
+        <i class="fas fa-code-branch"></i> Examples
+      </button>
+      <button class="nav-tab" data-tab="errors">
+        <i class="fas fa-exclamation-triangle"></i> Error Handling
+      </button>
+    </div>
+
+    <!-- Getting Started Tab -->
+    <div class="tab-content active" id="getting-started">
+      <div class="section">
+        <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+        <p>Fast Flash API adalah REST API yang menyediakan berbagai layanan mulai dari AI, download media, pencarian, tools, dan masih banyak lagi. API ini dirancang untuk mudah digunakan dan terintegrasi dengan aplikasi Anda.</p>
+        
+        <h3>Base URL</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+          <pre>https://your-domain.com</pre>
+        </div>
+
+        <h3>Format Response</h3>
+        <p>Semua response API menggunakan format JSON dengan struktur berikut:</p>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+          <pre>{
+  "status": true,
+  "creator": "By Ibra Decode",
+  "result": {
+    // Data response
+  }
+}</pre>
+        </div>
+
+        <h3>HTTP Methods</h3>
+        <p>API ini menggunakan method HTTP GET untuk semua endpoint. Parameter dikirim melalui query string.</p>
+
+        <h3>Rate Limiting</h3>
+        <p>Untuk menjaga performa server, API ini menerapkan rate limiting. Pastikan Anda memiliki API key yang valid untuk akses unlimited.</p>
+      </div>
+    </div>
+
+    <!-- Authentication Tab -->
+    <div class="tab-content" id="authentication">
+      <div class="section">
+        <h2><i class="fas fa-key"></i> Authentication</h2>
+        <p>Fast Flash API menggunakan API key untuk autentikasi. API key harus disertakan dalam setiap request sebagai parameter query.</p>
+        
+        <h3>Cara Menggunakan API Key</h3>
+        <p>Tambahkan parameter <code>apikey</code> pada setiap request:</p>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+          <pre>GET /api/endpoint?apikey=YOUR_API_KEY&param1=value1</pre>
+        </div>
+
+        <h3>Mendapatkan API Key</h3>
+        <p>Untuk mendapatkan API key, silakan hubungi admin melalui:</p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0; padding-left: 2rem;">
+          <li><strong>WhatsApp 1:</strong> <a href="https://wa.me/627743048235" target="_blank" style="color: var(--primary-color);">+62 774 304 8235</a></li>
+          <li><strong>WhatsApp 2:</strong> <a href="https://wa.me/6287768378361" target="_blank" style="color: var(--primary-color);">+62 877 6837 8361</a></li>
+        </ul>
+
+        <h3>Harga API Key</h3>
+        <div class="api-card">
+          <h4>Premium API Key <span class="status-badge status-active">Recommended</span></h4>
+          <p>Akses unlimited ke semua endpoint dengan rate limit tinggi</p>
+          <div style="font-size: 1.5rem; color: var(--primary-color); font-weight: 600;">
+            Rp 5.000 / bulan
+          </div>
+        </div>
+
+        <h3>Error Authentication</h3>
+        <p>Jika API key tidak valid atau tidak disertakan, Anda akan mendapat response error:</p>
+        <div class="example-response">{
+  "status": false,
+  "message": "API key required or invalid"
+}</div>
+      </div>
+    </div>
+
+    <!-- Endpoints Tab -->
+    <div class="tab-content" id="endpoints">
+      <div class="section">
+        <h2><i class="fas fa-code"></i> Available Endpoints</h2>
+        <p>Berikut adalah daftar lengkap endpoint yang tersedia di Fast Flash API:</p>
+        
+        <div id="endpoints-list">
+          <!-- Endpoints akan dimuat secara dinamis -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Examples Tab -->
+    <div class="tab-content" id="examples">
+      <div class="section">
+        <h2><i class="fas fa-code-branch"></i> Usage Examples</h2>
+        
+        <h3>JavaScript (Fetch API)</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+          <pre>// Download TikTok Video
+const apiKey = 'YOUR_API_KEY';
+const url = 'https://tiktok.com/video-url';
+
+fetch(`https://your-domain.com/download/tiktok?apikey=${apiKey}&url=${encodeURIComponent(url)}`)
+  .then(response => response.json())
+  .then(data => {
+    if (data.status) {
+      console.log('Video data:', data.result);
+    } else {
+      console.error('Error:', data.message);
+    }
+  })
+  .catch(error => console.error('Request failed:', error));</pre>
+        </div>
+
+        <h3>Python (Requests)</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+          <pre>import requests
+
+# Search YouTube
+api_key = 'YOUR_API_KEY'
+query = 'tutorial programming'
+
+response = requests.get(f'https://your-domain.com/search/youtube?apikey={api_key}&q={query}')
+data = response.json()
+
+if data['status']:
+    print('Search results:', data['result'])
+else:
+    print('Error:', data.get('message', 'Unknown error'))</pre>
+        </div>
+
+        <h3>PHP (cURL)</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+          <pre>&lt;?php
+// AI Chat with Gemini
+$apiKey = 'YOUR_API_KEY';
+$text = 'Halo, apa kabar?';
+
+$url = "https://your-domain.com/ai/gemini?apikey=" . urlencode($apiKey) . "&text=" . urlencode($text);
+
+$response = file_get_contents($url);
+$data = json_decode($response, true);
+
+if ($data['status']) {
+    echo "AI Response: " . $data['result']['response'];
+} else {
+    echo "Error: " . $data['message'];
+}
+?&gt;</pre>
+        </div>
+
+        <h3>Node.js (Axios)</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+          <pre>const axios = require('axios');
+
+// Instagram Stalker
+const apiKey = 'YOUR_API_KEY';
+const username = 'instagram_username';
+
+axios.get(`https://your-domain.com/stalk/instagram?apikey=${apiKey}&username=${username}`)
+  .then(response => {
+    const data = response.data;
+    if (data.status) {
+      console.log('Profile data:', data.result);
+    } else {
+      console.error('Error:', data.message);
+    }
+  })
+  .catch(error => console.error('Request failed:', error));</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Handling Tab -->
+    <div class="tab-content" id="errors">
+      <div class="section">
+        <h2><i class="fas fa-exclamation-triangle"></i> Error Handling</h2>
+        
+        <h3>HTTP Status Codes</h3>
+        <table class="parameter-table">
+          <thead>
+            <tr>
+              <th>Status Code</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>200</td>
+              <td>Success - Request berhasil diproses</td>
+            </tr>
+            <tr>
+              <td>400</td>
+              <td>Bad Request - Parameter tidak valid atau kurang</td>
+            </tr>
+            <tr>
+              <td>401</td>
+              <td>Unauthorized - API key tidak valid atau tidak ada</td>
+            </tr>
+            <tr>
+              <td>429</td>
+              <td>Too Many Requests - Rate limit terlampaui</td>
+            </tr>
+            <tr>
+              <td>500</td>
+              <td>Internal Server Error - Error pada server</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Error Response Format</h3>
+        <p>Ketika terjadi error, API akan mengembalikan response dengan format berikut:</p>
+        <div class="example-response">{
+  "status": false,
+  "message": "Error description",
+  "error": "Detailed error information (optional)"
+}</div>
+
+        <h3>Common Errors</h3>
+        
+        <div class="api-card">
+          <h4>Missing API Key</h4>
+          <p>Terjadi ketika parameter apikey tidak disertakan dalam request</p>
+          <div class="example-response">{
+  "status": false,
+  "message": "API key is required"
+}</div>
+        </div>
+
+        <div class="api-card">
+          <h4>Invalid URL Parameter</h4>
+          <p>Terjadi ketika URL yang diberikan tidak valid atau tidak didukung</p>
+          <div class="example-response">{
+  "status": false,
+  "message": "Invalid URL format or unsupported platform"
+}</div>
+        </div>
+
+        <div class="api-card">
+          <h4>Rate Limit Exceeded</h4>
+          <p>Terjadi ketika jumlah request melebihi batas yang diizinkan</p>
+          <div class="example-response">{
+  "status": false,
+  "message": "Rate limit exceeded. Please try again later."
+}</div>
+        </div>
+
+        <h3>Best Practices</h3>
+        <ul style="color: var(--text-secondary); margin: 1rem 0; padding-left: 2rem;">
+          <li>Selalu periksa status response sebelum memproses data</li>
+          <li>Implementasikan retry logic untuk error sementara (5xx)</li>
+          <li>Gunakan timeout yang wajar untuk request</li>
+          <li>Log error untuk debugging dan monitoring</li>
+          <li>Validasi parameter sebelum mengirim request</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching functionality
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Remove active class from all tabs and contents
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        this.classList.add('active');
+        document.getElementById(this.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Copy to clipboard functionality
+    function copyToClipboard(button) {
+      const codeBlock = button.nextElementSibling;
+      const text = codeBlock.textContent;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        button.style.background = '#10b981';
+        
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = '';
+        }, 2000);
+      });
+    }
+
+    // Load endpoints dynamically
+    async function loadEndpoints() {
+      try {
+        const response = await fetch('/api/endpoints.json');
+        const endpoints = await response.json();
+        
+        const endpointsList = document.getElementById('endpoints-list');
+        
+        Object.keys(endpoints).forEach(category => {
+          const categorySection = document.createElement('div');
+          categorySection.innerHTML = `
+            <h3><i class="fas fa-folder"></i> ${category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+          `;
+          
+          endpoints[category].forEach(endpoint => {
+            const endpointCard = document.createElement('div');
+            endpointCard.className = 'api-card';
+            
+            let statusClass = 'status-active';
+            if (endpoint.status.toLowerCase().includes('beta')) statusClass = 'status-beta';
+            if (endpoint.status.toLowerCase().includes('maintenance')) statusClass = 'status-maintenance';
+            
+            endpointCard.innerHTML = `
+              <h4>
+                ${endpoint.name}
+                <span class="status-badge ${statusClass}">${endpoint.status}</span>
+              </h4>
+              <p>${endpoint.desc || 'No description available'}</p>
+              <div class="endpoint-url">GET ${endpoint.path}</div>
+              <div style="margin-top: 1rem;">
+                <strong>Parameters:</strong>
+                <div style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                  ${getParametersFromPath(endpoint.path)}
+                </div>
+              </div>
+            `;
+            
+            categorySection.appendChild(endpointCard);
+          });
+          
+          endpointsList.appendChild(categorySection);
+        });
+      } catch (error) {
+        console.error('Failed to load endpoints:', error);
+        document.getElementById('endpoints-list').innerHTML = `
+          <div class="api-card">
+            <h4>Error Loading Endpoints</h4>
+            <p>Failed to load endpoint data. Please try again later.</p>
+          </div>
+        `;
+      }
+    }
+
+    function getParametersFromPath(path) {
+      if (!path.includes('?')) return 'No parameters required';
+      
+      const params = path.split('?')[1].split('&');
+      return params.map(param => {
+        const [key, value] = param.split('=');
+        return `<code>${key}</code>: ${key === 'apikey' ? 'Your API key' : 'Required parameter'}`;
+      }).join('<br>');
+    }
+
+    // Load endpoints when page loads
+    document.addEventListener('DOMContentLoaded', loadEndpoints);
+  </script>
+</body>
+</html>
+

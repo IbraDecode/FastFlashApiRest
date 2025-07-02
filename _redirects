@@ -1,0 +1,14 @@
+# API redirects
+/api/* /api/:splat 200
+
+# Documentation redirect
+/docs /docs.html 200
+/documentation /docs.html 200
+
+# Legacy redirects
+/home / 301
+/index / 301
+
+# SPA fallback for client-side routing
+/* /index.html 200
+
