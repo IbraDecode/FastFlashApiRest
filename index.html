@@ -631,30 +631,54 @@
 
     /* Search */
     .search-container {
-        margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
     }
 
     #searchInput {
-        width: 100%;
-        padding: 0.9rem 1.2rem;
-        font-size: 0.95rem;
-        border-radius: var(--border-radius);
-        border: 1px solid var(--border-color);
-        box-shadow: var(--shadow-sm);
-        transition: var(--transition);
-        background: var(--dark-surface-2);
-        color: var(--text-primary);
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    background: #f7f7f7;
+    color: var(--text-primary);
+    padding-right: 40px;
     }
 
-    #searchInput::placeholder {
-        color: var(--text-muted);
-    }
+#searchInput::placeholder {
+  color: var(--text-muted);
+}
 
-    #searchInput:focus {
-        outline: none;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-    }
+#searchInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#searchInput:hover {
+  border-color: var(--primary-color);
+}
+
+/* Tambahkan ikon pencarian */
+.search-container::after {
+  content: "\f002";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+/* Efek hover pada ikon */
+.search-container:hover::after {
+  color: var(--primary-color);
+}
+
 
     /* Tabs */
     .tabs {
@@ -1536,40 +1560,76 @@
             </a>
           </li>
           <li class="nav-group">
-            <div class="nav-group-header">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <i class="fas fa-list"></i>
-                <span>API List</span>
-              </div>
-              <i class="fas fa-chevron-down nav-group-toggle"></i>
-            </div>
-            <ul class="nav-group-items">
-              <li>
-                <a href="#" class="nav-link sub-nav" data-page="ai-apis">
-                  <i class="fas fa-brain"></i>
-                  <span>AI</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link sub-nav" data-page="news-apis">
-                  <i class="fas fa-newspaper"></i>
-                  <span>Berita</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link sub-nav" data-page="download-apis">
-                  <i class="fas fa-download"></i>
-                  <span>Downloads</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link sub-nav" data-page="other-apis">
-                  <i class="fas fa-ellipsis-h"></i>
-                  <span>Lainnya</span>
-                </a>
-              </li>
-            </ul>
-          </li>
+  <div class="nav-group-header">
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <i class="fas fa-list"></i>
+      <span>API List</span>
+    </div>
+    <i class="fas fa-chevron-down nav-group-toggle"></i>
+  </div>
+  <ul class="nav-group-items">
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="ai-apis">
+        <i class="fas fa-brain"></i>
+        <span>AI</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="orderkuota-apis">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Order Kuota</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="downloader-apis">
+        <i class="fas fa-download"></i>
+        <span>Downloader</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="random-apis">
+        <i class="fas fa-random"></i>
+        <span>Random</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="search-apis">
+        <i class="fas fa-search"></i>
+        <span>Search</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="tools-apis">
+        <i class="fas fa-tools"></i>
+        <span>Tools</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="stalker-apis">
+        <i class="fas fa-user-secret"></i>
+        <span>Stalker</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="creator-apis">
+        <i class="fas fa-paint-brush"></i>
+        <span>Creator</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="berita-apis">
+        <i class="fas fa-newspaper"></i>
+        <span>Berita</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link sub-nav" data-page="api-apis">
+        <i class="fas fa-code"></i>
+        <span>API</span>
+      </a>
+    </li>
+  </ul>
+</li>
           <li>
             <a href="#" class="nav-link" data-page="contributors">
               <i class="fas fa-users"></i>
@@ -1611,7 +1671,7 @@
         <div class="header-right">
           <div class="status-indicator">
             <div class="status-dot" id="statusDot"></div>
-            <span id="statusText">Checking...</span>
+            <span id="statusText">Loading Data...</span>
           </div>
           <button class="user-avatar">
             <i class="fas fa-user"></i>
@@ -1753,7 +1813,7 @@
               </div>
               <div class="contributor-info">
                 <h3>Ibra Decode</h3>
-                <p class="contributor-role">Lead Developer & Creator</p>
+                <p class="contributor-role">Front End Developer & Creator</p>
                 <p class="contributor-desc">Pengembang utama dan pencipta Fast Flash API. Bertanggung jawab atas arsitektur sistem dan pengembangan fitur-fitur utama.</p>
                 <div class="contributor-links">
                   <a href="https://github.com/IbraDecode" target="_blank" class="contributor-link">
@@ -1771,10 +1831,31 @@
 
             <div class="contributor-card">
               <div class="contributor-avatar">
+                <i class="fas fa-user-tie"></i>
+              </div>
+              <div class="contributor-info">
+                <h3>Skyzo</h3>
+                <p class="contributor-role">Base Script & Endpoints. Back End Developer</p>
+                <p class="contributor-desc">Pengembang yang membuat api endpoints. Membuat endpoints dan fitur fitur yang di sediakan.</p>
+                <div class="contributor-links">
+                  <a href="https://github.com/IbraDecode" target="_blank" class="contributor-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a href="https://youtube.com/@IbraDecode" target="_blank" class="contributor-link">
+                    <i class="fab fa-youtube"></i>
+                  </a>
+                  <a href="https://wa.me/6285133888035" target="_blank" class="contributor-link">
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="contributor-card">
+              <div class="contributor-avatar">
                 <i class="fas fa-cloud"></i>
               </div>
               <div class="contributor-info">
-                <h3>Base SkyZo CloudFlare</h3>
+                <h3>CloudFlare</h3>
                 <p class="contributor-role">Infrastructure & CloudFlare Specialist</p>
                 <p class="contributor-desc">Spesialis infrastruktur dan CloudFlare yang bertanggung jawab atas optimasi performa, keamanan, dan distribusi global API.</p>
                 <div class="contributor-links">
@@ -1811,16 +1892,17 @@
                   <li><i class="fas fa-check"></i> Support prioritas</li>
                   <li><i class="fas fa-check"></i> Dokumentasi lengkap</li>
                   <li><i class="fas fa-check"></i> Custom integration</li>
+                  <li><i class=" fas fa-check"></i> Custom Apikey</li>
                 </ul>
               </div>
               <div class="pricing-contact">
                 <h4>Hubungi Kami untuk Pembelian:</h4>
                 <div class="contact-buttons">
-                  <a href="https://wa.me/627743048235" target="_blank" class="contact-btn primary">
+                  <a href="https://wa.me/6287768378361" target="_blank" class="contact-btn primary">
                     <i class="fab fa-whatsapp"></i>
                     WhatsApp 1
                   </a>
-                  <a href="https://wa.me/6287768378361" target="_blank" class="contact-btn secondary">
+                  <a href="https://wa.me/627743048235" target="_blank" class="contact-btn secondary">
                     <i class="fab fa-whatsapp"></i>
                     WhatsApp 2
                   </a>
@@ -1832,51 +1914,114 @@
         </div>
 
         <!-- AI APIs Page -->
-        <div class="page" id="ai-apisPage">
-          <div class="page-header">
-            <h2>API List - AI</h2>
-            <div class="search-container">
-              <input type="text" id="searchInputAI" placeholder="🔍 Search AI endpoints..." />
-            </div>
-          </div>
-          <div id="ai-api-list" class="api-list"></div>
-        </div>
-
-        <!-- News APIs Page -->
-        <div class="page" id="news-apisPage">
-          <div class="page-header">
-            <h2>API List - Berita</h2>
-            <div class="search-container">
-              <input type="text" id="searchInputNews" placeholder="🔍 Search berita endpoints..." />
-            </div>
-          </div>
-          <div id="news-api-list" class="api-list"></div>
-        </div>
-
-        <!-- Download APIs Page -->
-        <div class="page" id="download-apisPage">
-          <div class="page-header">
-            <h2>API List - Downloads</h2>
-            <div class="search-container">
-              <input type="text" id="searchInputDownload" placeholder="🔍 Search download endpoints..." />
-            </div>
-          </div>
-          <div id="download-api-list" class="api-list"></div>
-        </div>
-
-        <!-- Other APIs Page -->
-        <div class="page" id="other-apisPage">
-          <div class="page-header">
-            <h2>API List - Lainnya</h2>
-            <div class="search-container">
-              <input type="text" id="searchInputOther" placeholder="🔍 Search other endpoints..." />
-            </div>
-          </div>
-          <div id="other-api-list" class="api-list"></div>
-        </div>
-      </div>
+<div class="page" id="ai-apisPage">
+  <div class="page-header">
+    <h2>API List - AI</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputAI" placeholder="🔍 Search AI endpoints..." />
     </div>
   </div>
+  <div id="ai-api-list" class="api-list"></div>
+</div>
+
+<!-- Order Kuota APIs Page -->
+<div class="page" id="orderkuota-apisPage">
+  <div class="page-header">
+    <h2>API List - Order Kuota</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputOrderKuota" placeholder="🔍 Search order kuota endpoints..." />
+    </div>
+  </div>
+  <div id="orderkuota-api-list" class="api-list"></div>
+</div>
+
+<!-- Downloader APIs Page -->
+<div class="page" id="downloader-apisPage">
+  <div class="page-header">
+    <h2>API List - Downloader</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputDownloader" placeholder="🔍 Search downloader endpoints..." />
+    </div>
+  </div>
+  <div id="downloader-api-list" class="api-list"></div>
+</div>
+
+<!-- Random APIs Page -->
+<div class="page" id="random-apisPage">
+  <div class="page-header">
+    <h2>API List - Random</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputRandom" placeholder="🔍 Search random endpoints..." />
+    </div>
+  </div>
+  <div id="random-api-list" class="api-list"></div>
+</div>
+
+<!-- Search APIs Page -->
+<div class="page" id="search-apisPage">
+  <div class="page-header">
+    <h2>API List - Search</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputSearch" placeholder="🔍 Search search endpoints..." />
+    </div>
+  </div>
+  <div id="search-api-list" class="api-list"></div>
+</div>
+
+<!-- Tools APIs Page -->
+<div class="page" id="tools-apisPage">
+  <div class="page-header">
+    <h2>API List - Tools</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputTools" placeholder="🔍 Search tools endpoints..." />
+    </div>
+  </div>
+  <div id="tools-api-list" class="api-list"></div>
+</div>
+
+<!-- Stalker APIs Page -->
+<div class="page" id="stalker-apisPage">
+  <div class="page-header">
+    <h2>API List - Stalker</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputStalker" placeholder="🔍 Search stalker endpoints..." />
+    </div>
+  </div>
+  <div id="stalker-api-list" class="api-list"></div>
+</div>
+
+<!-- Creator APIs Page -->
+<div class="page" id="creator-apisPage">
+  <div class="page-header">
+    <h2>API List - Creator</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputCreator" placeholder="🔍 Search creator endpoints..." />
+    </div>
+  </div>
+  <div id="creator-api-list" class="api-list"></div>
+</div>
+
+<!-- Berita APIs Page -->
+<div class="page" id="berita-apisPage">
+  <div class="page-header">
+    <h2>API List - Berita</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputBerita" placeholder="🔍 Search berita endpoints..." />
+    </div>
+  </div>
+  <div id="berita-api-list" class="api-list"></div>
+</div>
+
+<!-- API APIs Page -->
+<div class="page" id="api-apisPage">
+  <div class="page-header">
+    <h2>API List - API</h2>
+    <div class="search-container">
+      <input type="text" id="searchInputAPI" placeholder="🔍 Search API endpoints..." />
+    </div>
+  </div>
+  <div id="api-api-list" class="api-list"></div>
+</div>
 
   <!-- Modal for API Response -->
   <div class="modal" id="apiResponseModal">
@@ -2423,37 +2568,27 @@
 
     // Load category-specific APIs
     async function loadCategoryAPIs() {
-      try {
-        const response = await fetchWithRetry('./api/endpoints.json');
-        const apis = await response.json();
-        
-        // AI APIs (openai + ai premium)
-        const aiAPIs = [...(apis['openai'] || []), ...(apis['ai premium'] || [])];
-        renderCategoryAPIs('ai-api-list', aiAPIs, 'searchInputAI');
-        
-        // News APIs
-        const newsAPIs = apis['berita'] || [];
-        renderCategoryAPIs('news-api-list', newsAPIs, 'searchInputNews');
-        
-        // Download APIs
-        const downloadAPIs = apis['downloader'] || [];
-        renderCategoryAPIs('download-api-list', downloadAPIs, 'searchInputDownload');
-        
-        // Other APIs (tools, search, stalker, creator, random, orderkuota)
-        const otherAPIs = [
-          ...(apis['tools'] || []),
-          ...(apis['search'] || []),
-          ...(apis['stalker'] || []),
-          ...(apis['creator'] || []),
-          ...(apis['random'] || []),
-          ...(apis['orderkuota'] || [])
-        ];
-        renderCategoryAPIs('other-api-list', otherAPIs, 'searchInputOther');
-      } catch (err) {
-        console.error('Failed to load category APIs:', err);
-        showNotification('Failed to load API categories', 'warning');
-      }
-    }
+  try {
+    const response = await fetchWithRetry('./api/endpoints.json');
+    const apis = await response.json();
+    
+    // Render masing-masing kategori
+    renderCategoryAPIs('ai-api-list', apis['openai'] || [], 'searchInputAI');
+    renderCategoryAPIs('orderkuota-api-list', apis['orderkuota'] || [], 'searchInputOrderKuota');
+    renderCategoryAPIs('downloader-api-list', apis['downloader'] || [], 'searchInputDownloader');
+    renderCategoryAPIs('random-api-list', apis['random'] || [], 'searchInputRandom');
+    renderCategoryAPIs('search-api-list', apis['search'] || [], 'searchInputSearch');
+    renderCategoryAPIs('tools-api-list', apis['tools'] || [], 'searchInputTools');
+    renderCategoryAPIs('stalker-api-list', apis['stalker'] || [], 'searchInputStalker');
+    renderCategoryAPIs('creator-api-list', apis['creator'] || [], 'searchInputCreator');
+    renderCategoryAPIs('berita-api-list', apis['berita'] || [], 'searchInputBerita');
+    renderCategoryAPIs('api-api-list', apis['api'] || [], 'searchInputAPI');
+    
+  } catch (err) {
+    console.error('Failed to load category APIs:', err);
+    showNotification('Failed to load API categories', 'warning');
+  }
+}
 
     function renderCategoryAPIs(containerId, apis, searchInputId) {
       const container = document.getElementById(containerId);
