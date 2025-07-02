@@ -704,6 +704,59 @@
         line-height: 1.5;
     }
 
+    /* Api 404 / Gaada Enpointsds */
+    .api-kosong {
+    padding: 40px 0;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    animation: fadeIn 0.5s ease;
+    }
+
+    .animasi-api-kosong {
+  background-image: url('https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif');
+  height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    background-size: contain;
+    }
+
+    .api-kosong h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: 1rem 0;
+    font-weight: 600;
+    }
+
+    .api-kosong p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    }
+
+    .tombol-kembali {
+    color: white !important;
+    padding: 12px 24px;
+    background: var(--primary-color);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    }
+
+    .tombol-kembali:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    }
+
     .status {
         background: rgba(16, 185, 129, 0.1);
         padding: 0.3rem 0.8rem;
@@ -3298,23 +3351,32 @@ X-RateLimit-Reset: 1640995200</code></pre>
     }
 
     function renderAPICards(container, apis) {
-      container.innerHTML = '';
-      
-      if (apis.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 2rem;">Tidak ada API tersedia dalam kategori ini.</p>';
-        return;
-      }
-      
-      apis.forEach((api, index) => {
-        const card = createApiCard(api, index);
-        container.appendChild(card);
-        
-        // Animate card appearance
-        setTimeout(() => {
-          card.classList.add('loaded');
-        }, index * 50);
-      });
-    }
+  container.innerHTML = '';
+  
+  if (apis.length === 0) {
+    container.innerHTML = `
+      <div class="api-kosong">
+        <div class="animasi-api-kosong"></div>
+        <h3>Waduh, Kosong Nih!</h3>
+        <p>Sepertinya belum ada API yang tersedia di kategori ini.</p>
+        <button class="tombol-kembali" data-page="dashboard">
+          <i class="fas fa-arrow-left"></i> Balik ke Dashboard
+        </button>
+      </div>
+    `;
+    return;
+  }
+  
+  apis.forEach((api, index) => {
+    const card = createApiCard(api, index);
+    container.appendChild(card);
+    
+    // Animasi munculnya card
+    setTimeout(() => {
+      card.classList.add('loaded');
+    }, index * 50);
+  });
+}
 
     function createApiCard(api, index) {
       const card = document.createElement("div");
