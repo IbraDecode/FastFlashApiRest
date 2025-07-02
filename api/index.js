@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = async (req, res) => {
-  const filePath = path.join(__dirname, '../index2.html');
+  const filePath = path.join(__dirname, '../index.html');
   try {
     const html = fs.readFileSync(filePath, 'utf8');
     res.setHeader('Content-Type', 'text/html');

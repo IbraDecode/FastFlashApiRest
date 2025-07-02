@@ -1,0 +1,17 @@
+{
+  "status": true,
+  "result": {
+    "totalfitur": 150,
+    "totalrequest": 25847,
+    "runtime": "24h 15m 32s",
+    "uptime": 87332,
+    "memory": {
+      "used": 45,
+      "total": 128
+    },
+    "version": "3.7.6",
+    "node_version": "v20.18.0",
+    "platform": "linux"
+  }
+}
+

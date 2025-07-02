@@ -2,9 +2,9 @@
   "ai premium": [
   {
     "name": "XMsbra",
-    "desc": "XMsbra Ai",
+    "desc": "XMsbra Ai,
     "status": "Active",
-    "path": "/ai/xmsbra?apikey=&text="
+    "path": "/fast-ai/xmsbra?apikey=&text="
     }
   ],
   "openai": [
@@ -246,12 +246,6 @@
     }
   ],
   "tools": [
-    {
-      "name": "Profile Image Generator",
-      "desc": "Generate dynamic skill profile PNG",
-      "status": "Active",
-      "path": "/tools/profile-image?apikey=&backgroundURL=&avatarURL=&name=&bio=&alamat=&wilayah=&skills="
-    },
     {
       "name": "Text-to-speech",
       "desc": "Tts anime character",
