@@ -20,7 +20,7 @@ app.use(cors());
 
 // Static file serving
 app.use('/', express.static(path.join(__dirname, '/')));
-app.use('/', express.static(path.join(__dirname, 'ui')));
+app.use('index2.html', express.static(path.join(__dirname, '/test')));
 app.use('/api', express.static(path.join(__dirname, 'api')));
 
 // Load settings.json
