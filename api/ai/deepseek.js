@@ -2,41 +2,17 @@ const fetch = require('node-fetch');
 
 module.exports = function(app) {
   const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY || "sk-e07630a6f25d4fd8b338c2257268f122";
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-  async function Deepsek(teks) {
-    try {
-      const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
-          "Content-Type": "application/json"
-          // Optional headers:
-          // "HTTP-Referer": "",
-          // "X-Title": ""
-        },
-        body: JSON.stringify({
-          model: "deepsek-chat",
-          messages: [
-            {
-              role: "user",
-              content: teks
-            }
-          ]
-        })
-      });
+const genAI = new GoogleGenerativeAI("AIzaSyCQvMk12Yyy3xX0GkPtie8y-465cjINaMM");
 
-      const data = await response.json();
-
-      if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-        throw new Error("Invalid response from Deepseek API");
-      }
-
-      return data.choices[0].message.content.trim();
-
-    } catch (err) {
-      throw new Error("Failed to fetch from Deepseek API: " + err.message);
-    }
-  }
+async function Depsek(teks) {
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash"});
+  const result = await model.generateContent(prom);
+  const response = await result.response;
+  const texts = response.text();
+  return texts
+}
 
   app.get('/ai/deepseek', async (req, res) => {
     const { text, apikey } = req.query;
