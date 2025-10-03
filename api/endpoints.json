@@ -19,6 +19,12 @@
       "desc": "Gemini ai chat",
       "status": "Active",
       "path": "/ai/gemini?apikey=&text="
+    },
+    {
+      "name": "Deepsek",
+      "desc": "Deepsek ai api",
+      "status": "Active",
+      "path": "/ai/deepsek?apikey=&text="
     }
   ],
   "orderkuota": [
