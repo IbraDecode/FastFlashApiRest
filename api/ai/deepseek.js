@@ -8,7 +8,7 @@ const genAI = new GoogleGenerativeAI("AIzaSyCQvMk12Yyy3xX0GkPtie8y-465cjINaMM");
 
 async function Deepsek(teks) {
   const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash"});
-  const result = await model.generateContent(prom);
+  const result = await model.generateContent(teks);
   const response = await result.response;
   const texts = response.text();
   return texts
