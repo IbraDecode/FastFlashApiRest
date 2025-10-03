@@ -6,7 +6,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI("AIzaSyCQvMk12Yyy3xX0GkPtie8y-465cjINaMM");
 
-async function Depsek(teks) {
+async function Deepsek(teks) {
   const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash"});
   const result = await model.generateContent(prom);
   const response = await result.response;
