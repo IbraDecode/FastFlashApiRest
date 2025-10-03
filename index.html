@@ -2963,6 +2963,16 @@
         </div>
 
         <!-- API Category Pages -->
+        <div class="page" id="all-apisPage">
+          <div class="page-header">
+            <h2>All APIs</h2>
+            <div class="search-container">
+              <input type="text" class="search-input" id="searchInputAll" placeholder="🔍 Search All endpoints..." />
+            </div>
+          </div>
+          <div id="all-api-list" class="api-list"></div>
+        </div>
+        
         <div class="page" id="ai-apisPage">
           <div class="page-header">
             <h2>AI APIs</h2>
@@ -3103,8 +3113,8 @@
       <a id="whatsappLink" target="_blank" title="WhatsApp">
         <i class="fab fa-whatsapp"></i>
       </a>
-      <a id="youtubeLink" target="_blank" title="YouTube">
-        <i class="fab fa-youtube"></i>
+      <a id="telegramLink" target="_blank" title="Telegram">
+        <i class="fab fa-telegram"></i>
       </a>
     </div>
   </footer>
@@ -3764,11 +3774,11 @@ X-RateLimit-Reset: 1640995200</code></pre>
         // Set social links
         const githubLink = document.getElementById("githubLink");
         const whatsappLink = document.getElementById("whatsappLink");
-        const youtubeLink = document.getElementById("youtubeLink");
+        const telegramLink = document.getElementById("telegramLink");
         
         if (githubLink) githubLink.href = settings.github || "#";
         if (whatsappLink) whatsappLink.href = settings.whatsapp || "#";
-        if (youtubeLink) youtubeLink.href = settings.youtube || "#";
+        if (telegramLink) telegramLink.href = settings.telegram || "#";
 
         // API button click handler
         document.addEventListener("click", (e) => {
@@ -4179,7 +4189,19 @@ X-RateLimit-Reset: 1640995200</code></pre>
           'stalker-api-list': apis['stalk'] || [],
           'creator-api-list': apis['creator'] || [],
           'berita-api-list': apis['berita'] || []
-        };
+          'all-api-list': [
+        ...(apis['openai'] || []),
+        ...(apis['ai premium'] || []),
+        ...(apis['orderkuota'] || []),
+        ...(apis['downloader'] || []),
+        ...(apis['random'] || []),
+        ...(apis['search'] || []),
+        ...(apis['tools'] || []),
+        ...(apis['stalk'] || []),
+        ...(apis['creator'] || []),
+        ...(apis['berita'] || [])
+      ]
+    };
 
         // Render each category
         Object.entries(categoryMappings).forEach(([containerId, categoryAPIs]) => {
