@@ -21,10 +21,10 @@
       "path": "/ai/gemini?apikey=&text="
     },
     {
-      "name": "Deepsek",
-      "desc": "Deepsek ai api",
+      "name": "Deepseek",
+      "desc": "Deepseek ai api",
       "status": "Active",
-      "path": "/ai/deepsek?apikey=&text="
+      "path": "/ai/deepseek?apikey=&text="
     }
   ],
   "orderkuota": [
